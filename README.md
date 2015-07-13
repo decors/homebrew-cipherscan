@@ -10,4 +10,4 @@ $ brew tap decors/cipherscan
 $ brew install --HEAD cipherscan
 ```
 
-[cipherscan]: https://github.com/jvehent/cipherscan
+cipherscan : [https://github.com/jvehent/cipherscan](https://github.com/jvehent/cipherscan)
