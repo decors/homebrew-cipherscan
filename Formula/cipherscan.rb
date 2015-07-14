@@ -7,7 +7,7 @@ class Cipherscan < Formula
   depends_on "coreutils"
 
   def install
-    bin.install "cipherscan", "openssl-darwin64"
+    bin.install "cipherscan", "openssl-darwin64", "analyze.py"
   end
 
   test do
