@@ -1,7 +1,7 @@
 class Cipherscan < Formula
   desc "Retrieve a list of the SSL cipher suites"
-  homepage "https://github.com/jvehent/cipherscan"
-  head "https://github.com/jvehent/cipherscan.git"
+  homepage "https://github.com/mozilla/cipherscan"
+  head "https://github.com/mozilla/cipherscan.git"
 
   depends_on "bash"
   depends_on "coreutils"
