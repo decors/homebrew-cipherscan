@@ -11,6 +11,8 @@ class Cipherscan < Formula
   def install
     libexec.install "cipherscan", "openssl-darwin64", "cscan", "cscan.sh", "cscan.py", "analyze.py"
     bin.install_symlink libexec/"cipherscan" => bin/"cipherscan"
+    bin.install_symlink libexec/"cscan.sh" => bin/"cscan.sh"
+    bin.install_symlink libexec/"cscan.py" => bin/"cscan.py"
     bin.install_symlink libexec/"analyze.py" => bin/"analyze"
   end
 
