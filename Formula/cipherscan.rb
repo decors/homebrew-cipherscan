@@ -30,8 +30,6 @@ class Cipherscan < Formula
     libexec.install %w[cipherscan analyze.py cscan cscan.py cscan.sh openssl-darwin64]
 
     bin.install_symlink libexec/"cipherscan" => bin/"cipherscan"
-    bin.install_symlink libexec/"cscan.sh" => bin/"cscan.sh"
-    bin.install_symlink libexec/"cscan.py" => bin/"cscan.py"
     bin.install_symlink libexec/"analyze.py" => bin/"analyze"
   end
 
@@ -42,24 +40,32 @@ end
 
 __END__
 diff --git a/cipherscan b/cipherscan
-index feac6b1..7ea55ea 100755
+index feac6b1..d122a3d 100755
 --- a/cipherscan
 +++ b/cipherscan
-@@ -2101,7 +2101,8 @@ fi
+@@ -78,7 +78,7 @@ else
+     esac
+ fi
+
+-DIRNAMEPATH=$(dirname "$0")
++DIRNAMEPATH=$(dirname `realpath "$0"`)
+
+ join_array_by_char() {
+     # Two or less parameters (join + 0 or 1 value), then no need to set IFS because no join occurs.
+@@ -2101,7 +2101,7 @@ fi
 
  if [[ -z $CACERTS ]] && ! [[ -n $CACERTS_ARG_SET ]]; then
      # find a list of trusted CAs on the local system, or use the provided list
 -    for f in /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt; do
-+    #for f in /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt; do
 +    for f in /usr/local/etc/openssl/cert.pem; do
          if [[ -e "$f" ]]; then
              CACERTS="$f"
              break
 diff --git a/cscan.sh b/cscan.sh
-index 0572d66..fe62407 100755
+index 0572d66..15821ac 100755
 --- a/cscan.sh
 +++ b/cscan.sh
-@@ -1,26 +1,26 @@
+@@ -1,27 +1,5 @@
  #!/bin/bash
  pushd "$(dirname ${BASH_SOURCE[0]})" > /dev/null
 -if [ ! -d ./tlslite ]; then
@@ -72,19 +78,9 @@ index 0572d66..fe62407 100755
 -    git clone --depth=1 https://github.com/warner/python-ecdsa.git .python-ecdsa
 -    ln -s .python-ecdsa/src/ecdsa ecdsa
 -fi
-+#if [ ! -d ./tlslite ]; then
-+#    echo -e "\n${BASH_SOURCE[0]}: tlslite-ng not found, downloading..."
-+#    git clone --depth=1 https://github.com/tomato42/tlslite-ng.git .tlslite-ng
-+#    ln -s .tlslite-ng/tlslite tlslite
-+#fi
-+#if [ ! -d ./ecdsa ]; then
-+#    echo -e "\n${BASH_SOURCE[0]}: python-ecdsa not found, downloading..."
-+#    git clone --depth=1 https://github.com/warner/python-ecdsa.git .python-ecdsa
-+#    ln -s .python-ecdsa/src/ecdsa ecdsa
-+#fi
-
- # update the code if it is running in interactive terminal
- #if [[ -t 1 ]]; then
+-
+-# update the code if it is running in interactive terminal
+-#if [[ -t 1 ]]; then
 -if [[ $UPDATE ]]; then
 -    pushd .tlslite-ng >/dev/null
 -    git pull origin master --quiet
@@ -93,14 +89,7 @@ index 0572d66..fe62407 100755
 -    git pull origin master --quiet
 -    popd >/dev/null
 -fi
-+#if [[ $UPDATE ]]; then
-+#    pushd .tlslite-ng >/dev/null
-+#    git pull origin master --quiet
-+#    popd >/dev/null
-+#    pushd .python-ecdsa >/dev/null
-+#    git pull origin master --quiet
-+#    popd >/dev/null
-+#fi
-
+-
  PYTHONPATH=. python cscan.py "$@"
  ret=$?
+ popd > /dev/null
