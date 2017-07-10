@@ -21,7 +21,7 @@ class Cipherscan < Formula
 
   def install
     resources.each do |r|
-      r.unpack libexec/".#{r.name}"
+      r.stage libexec/".#{r.name}"
     end
 
     ln_s libexec/".ecdsa/ecdsa", libexec/"ecdsa"
