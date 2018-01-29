@@ -15,8 +15,8 @@ class Cipherscan < Formula
   end
 
   resource "tlslite-ng" do
-    url "https://files.pythonhosted.org/packages/e3/cc/67f9dd450f74ce3f657f60d2abcb182d6cd3e0a7efb19b71cb755140afe7/tlslite-ng-0.7.0-alpha3.tar.gz"
-    sha256 "64818f404bf0fab796b0436b40dc3fddad158866366b085a8430dcd4746b6ef2"
+    url "https://files.pythonhosted.org/packages/18/01/5f012b5bc1e3e30dbed3d3d24b37ae7ceb8e5f8d60bfbaca41704248f2d3/tlslite-ng-0.8.0-alpha1.tar.gz"
+    sha256 "cbe3b6f5a9049d17767f729c568ed87e2092bdd677823feb5a46e1a70d2302f3"
   end
 
   def install
@@ -69,13 +69,13 @@ index 0572d66..15821ac 100755
  #!/bin/bash
  pushd "$(dirname ${BASH_SOURCE[0]})" > /dev/null
 -if [ ! -d ./tlslite ]; then
--    echo -e "\n${BASH_SOURCE[0]}: tlslite-ng not found, downloading..."
--    git clone --depth=1 https://github.com/tomato42/tlslite-ng.git .tlslite-ng
+-    echo -e "\n${BASH_SOURCE[0]}: tlslite-ng not found, downloading..." 1>&2
+-    git clone --depth=1 https://github.com/tomato42/tlslite-ng.git .tlslite-ng 1>&2
 -    ln -s .tlslite-ng/tlslite tlslite
 -fi
 -if [ ! -d ./ecdsa ]; then
--    echo -e "\n${BASH_SOURCE[0]}: python-ecdsa not found, downloading..."
--    git clone --depth=1 https://github.com/warner/python-ecdsa.git .python-ecdsa
+-    echo -e "\n${BASH_SOURCE[0]}: python-ecdsa not found, downloading..." 1>&2
+-    git clone --depth=1 https://github.com/warner/python-ecdsa.git .python-ecdsa 1>&2
 -    ln -s .python-ecdsa/src/ecdsa ecdsa
 -fi
 -
