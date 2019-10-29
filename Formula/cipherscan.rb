@@ -10,13 +10,13 @@ class Cipherscan < Formula
   patch :DATA
 
   resource "ecdsa" do
-    url "https://files.pythonhosted.org/packages/source/e/ecdsa/ecdsa-0.13.tar.gz"
-    sha256 "64cf1ee26d1cde3c73c6d7d107f835fed7c6a2904aef9eac223d57ad800c43fa"
+    url "https://files.pythonhosted.org/packages/source/e/ecdsa/ecdsa-0.13.3.tar.gz"
+    sha256 "163c80b064a763ea733870feb96f9dd9b92216cfcacd374837af18e4e8ec3d4d"
   end
 
   resource "tlslite-ng" do
-    url "https://files.pythonhosted.org/packages/18/01/5f012b5bc1e3e30dbed3d3d24b37ae7ceb8e5f8d60bfbaca41704248f2d3/tlslite-ng-0.8.0-alpha1.tar.gz"
-    sha256 "cbe3b6f5a9049d17767f729c568ed87e2092bdd677823feb5a46e1a70d2302f3"
+    url "https://files.pythonhosted.org/packages/e8/a3/405aa3959edd656045ac5e6c4f60c43a1121201cbb20aecf8a5176461352/tlslite-ng-0.8.0-alpha29.tar.gz"
+    sha256 "0c900d2ef7247e150e3ab9fe2ff4e4a4237fbe4e29351c8c84ab20b1aeee22e4"
   end
 
   def install
